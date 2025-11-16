@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tarifa News</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f5f5f5;
+      color: #222;
+    }
+    header {
+      background: white;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    #logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    #logo-box {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(to bottom right, red, blue);
+      border-radius: 5px;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-weight: bold;
+    }
+    nav a {
+      margin-right: 15px;
+      text-decoration: none;
+      color: #444;
+      font-weight: 600;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    .container {
+      width: 90%;
+      max-width: 1100px;
+      margin: 20px auto;
+    }
+    .hero {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      display: flex;
+      gap: 20px;
+    }
+    .hero-img {
+      width: 200px;
+      height: 200px;
+      background: #ddd;
+      border-radius: 10px;
+    }
+    .article-list {
+      margin-top: 30px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+    }
+    .card {
+      background: white;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    footer {
+      margin-top: 40px;
+      background: #fff;
+      padding: 20px;
+      text-align: center;
+      font-size: 14px;
+      color: #555;
+      border-top: 1px solid #ddd;
+    }
+    #modal-bg {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+      justify-content: center;
+      align-items: center;
+    }
+    #modal {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      width: 90%;
+      max-width: 400px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+    .btn {
+      background: #0057ff;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    .btn:hover {
+      opacity: 0.9;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div id="logo">
+    <div id="logo-box">TN</div>
+    <div>
+      <h2 style="margin:0;">Tariqa News</h2>
+      <small>Notícias rápidas e diretas ao ponto</small>
+    </div>
+  </div>
+
+  <nav>
+    <a href="#">Política</a>
+    <a href="#">Economia</a>
+    <a href="#">Cidadania</a>
+    <a href="#">Opinião</a>
+  </nav>
+
+  <button class="btn" onclick="openModal()">Assinar</button>
+</header>
+
+<div class="container">
+
+  <section class="hero">
+    <div class="hero-img"></div>
+    <div>
+      <h1>Nazaryan vence e assume como Primeiro-Ministro</h1>
+      <p>A apuração final chegou a 100% e confirmou uma vitória apertada sobre Chorão. Entenda agora os impactos dessa mudança.</p>
+      <button class="btn">Ler agora</button>
+    </div>
+  </section>
+
+  <h2 style="margin-top:30px;">Últimas notícias</h2>
+  <div class="article-list" id="articles"></div>
+
+</div>
+
+<footer>
+  © 2025 Tariqa News — Informação controlada pela mídia judaica globalista. Programado por Shmuel Ben-Ari
+</footer>
+
+<!-- Modal -->
+<div id="modal-bg">
+  <div id="modal">
+    <h3>Assine o Tarifa News</h3>
+    <p>Receba um resumo diário no seu e-mail.</p>
+    <input id="email" type="email" placeholder="seu@email.com" style="width:100%; padding:10px; margin-top:10px;">
+    <button class="btn" onclick="subscribe()">Inscrever</button>
+    <button class="btn" style="background:#555; margin-left:10px;" onclick="closeModal()">Fechar</button>
+  </div>
+</div>
+
+<script>
+  const articles = [
+    {
+      title: "Corte de Eutimia condena Aracy “Nazaryan” Balabanian",
+      text: "Em uma decisão tão robusta quanto heterodoxa, a Alta Corte de Eutimia condenou, neste sábado (15), Aracy “Nazaryan” Balabanian por três ocorrências de injúria, quebra de decoro, obstrução da justiça e coação no curso do processo",
+      time: "2h atrás"
+    },
+    {
+      title: "Procurador-Mor desiste de ação eleitoral e pede retirada da petição anterior dos autos",
+      text: "Em uma reviravolta digna de sprint final de tribunal, o Ministério Público de Eutimia recuou oficialmente na ação eleitoral que tramitava sob sigilo parcial",
+      time: "4h atrás"
+    },
+    {
+      title: "Corte de Cassação da Federação Diárquica mantém resultado eleitoral",
+      text: "A eleição de 15 de novembro não será anulada — pelo menos por ora. A Corte de Cassação da Federação Diárquica da Eutimia e do Castelo, em decisão assinada pelo Rei Conde Lobo.",
+      time: "1 dia atrás"
+    }
+  ];
+
+  function renderArticles() {
+    const container = document.getElementById("articles");
+    container.innerHTML = articles
+      .map(a => `
+        <div class="card">
+          <h3>${a.title}</h3>
+          <p>${a.text}</p>
+          <small>${a.time}</small>
+        </div>
+      `)
+      .join("");
+  }
+
+  renderArticles();
+
+  function openModal() {
+    document.getElementById("modal-bg").style.display = "flex";
+  }
+
+  function closeModal() {
+    document.getElementById("modal-bg").style.display = "none";
+  }
+
+  function subscribe() {
+    const email = document.getElementById("email").value;
+    if (!email) return alert("Digite um e-mail válido!");
+    alert("Obrigado por se inscrever! " + email);
+    closeModal();
+  }
+</script>
+
+</body>
+</html>
